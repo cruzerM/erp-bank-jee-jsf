@@ -1,0 +1,47 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="template.xhtml">
+
+	<ui:define name="content">
+
+<h:head> Add Employee </h:head>
+<h:body>
+	<h:form>
+		<p>
+			Employee: <br/>
+			<h:inputText id="lEmployee" value="#{leaveBean.leave.employee}" />
+		</p>
+		<p>
+			Type: <br />
+			<h:inputText id="lType" value="#{leaveBean.leave.type}" />
+		</p>
+		<p>
+			Payed?: <br />
+			<h:inputText id="lIspayed" value="#{leaveBean.leave.isPayed}" />
+		</p>
+		<p>
+			Start Date: <br />
+			<h:inputText id="lStartdate" value="#{leaveBean.leave.startDate}">
+				<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+			</h:inputText>
+		</p>
+		<p>
+			End Date: <br />
+			<h:inputText id="lEnddate" value="#{leaveBean.leave.endDate}">
+				<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+			</h:inputText>
+		</p>
+		<p>
+			Comments: <br />
+			<h:inputText id="lComment" value="#{leaveBean.leave.comment}" />
+
+		</p>
+		<h:commandButton action="#{leaveBean.doAddLeave()}"
+			value="Save" />
+	</h:form>
+</h:body>
+</ui:define>
+</ui:composition>

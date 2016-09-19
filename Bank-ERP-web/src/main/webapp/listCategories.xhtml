@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="template.xhtml" 
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+	<h1>List of Categories</h1>
+		<h:form>
+		<h:commandButton  action="#{stockBean.doAddCategoryPage()}" value="Add category">											
+					</h:commandButton><br/>
+		<p:dataTable id="tbl" border="1" value="#{stockBean.categories}" var="c">
+ 
+        <f:facet name="{Exporters}">
+            
+ 
+            <h:commandButton>
+                <p:graphicImage name="/resources/img/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="category"/>
+            </h:commandButton>
+ 
+           
+        </f:facet>
+		
+			
+				<p:column id="column1">
+					<f:facet name="header">
+						<h:outputText value="id"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column id="column2">
+					<f:facet name="header">
+						<h:outputText value="name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{c.name}" />
+				</p:column>
+				
+
+				<p:column id="column4">
+					<f:facet name="header">
+						<h:outputText value="action"></h:outputText>
+					</f:facet>
+					<h:commandButton action="#{stockBean.doUpdateCategoryPage()}" value="update">					
+						<f:setPropertyActionListener value="#{c}"
+							target="#{stockBean.categorySelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+					
+					<h:commandButton action="#{stockBean.doDeleteCategory()}" value="delete" >
+						<f:setPropertyActionListener value="#{c}"
+							target="#{stockBean.categorySelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
+
+    
+ 
+    <h:commandButton>
+        <p:graphicImage name="/resources/img/pdf.png" />
+        <p:dataExporter type="pdf" target="tbl" fileName="item" pageOnly="true" />
+    </h:commandButton>
+ 
+    
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Bank-ERP-ejb">
+		<jta-data-source>java:/erp_bank</jta-data-source>
+		<class>tn.esprit.entities.Account</class>
+		<class>tn.esprit.entities.Candidate</class>
+		<class>tn.esprit.entities.Category</class>
+		<class>tn.esprit.entities.Claim</class>
+		<class>tn.esprit.entities.Consumer</class>
+		<class>tn.esprit.entities.ConsumerProposition</class>
+		<class>tn.esprit.entities.ConsumerPropositionPk</class>
+		<class>tn.esprit.entities.Departement</class>
+		<class>tn.esprit.entities.Employee</class>
+		<class>tn.esprit.entities.Interview</class>
+		<class>tn.esprit.entities.Inventory</class>
+		<class>tn.esprit.entities.Item</class>
+		<class>tn.esprit.entities.Job</class>
+		<class>tn.esprit.entities.JobUser</class>
+		<class>tn.esprit.entities.JobUserPK</class>
+		<class>tn.esprit.entities.Leave</class>
+		<class>tn.esprit.entities.Offer</class>
+		<class>tn.esprit.entities.OfferResponse</class>
+		<class>tn.esprit.entities.OfferResponsePK</class>
+		<class>tn.esprit.entities.PayRoll</class>
+		<class>tn.esprit.entities.Proposition</class>
+		<class>tn.esprit.entities.Provider</class>
+		<class>tn.esprit.entities.Question</class>
+		<class>tn.esprit.entities.Survey</class>
+		<class>tn.esprit.entities.User</class>
+		<class>tn.esprit.entities.Warning</class>
+		
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+		</properties>
+	</persistence-unit>
+</persistence>

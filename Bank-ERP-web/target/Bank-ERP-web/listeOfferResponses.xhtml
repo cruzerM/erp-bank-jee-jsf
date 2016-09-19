@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="template.xhtml">
+      
+      <ui:define name="content">
+      <h:form enctype="multipart/form-data">
+      <p:dataTable  value="#{offerBean.offerResponses}" var="r">
+      		<p:column >
+					<f:facet name="header">
+						<h:outputText value="Offer Name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.offer.name}" />
+			</p:column>
+			<p:column >
+					<f:facet name="header">
+						<h:outputText value="Provider Name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.provider.name}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Date"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.postedDate}" />
+			</p:column>	
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Amount"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.amount}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="State"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.state}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Notes"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{r.notes}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Actions"></h:outputText>
+					</f:facet>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.displayAcceptRefuseForm()}" value="Accept/Refuse">
+						<f:setPropertyActionListener value="#{r}"
+							target="#{offerBean.selectedofferResponse}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.displayProviderSpecificationForm()}" value="Show Provider Spec">
+						<f:setPropertyActionListener value="#{r}"
+							target="#{offerBean.selectedofferResponse}"></f:setPropertyActionListener>
+					</h:commandButton>
+			</p:column>
+      </p:dataTable>
+      
+      
+      <h:panelGrid rendered="#{offerBean.displayAcceptRefuseForm}">
+      <h:outputText value="&#160;" />
+      <h:panelGrid>
+	  		<h:outputLabel value="Notes" />
+			<h:inputTextarea styleClass="form-control" value="#{offerBean.selectedofferResponse.notes}" />
+			<h:outputText value="&#160;" />
+		</h:panelGrid>
+		
+        	<h:commandButton styleClass="btn btn-primary"  action="#{offerBean.doAcceptOfferResponse()}" value="Accept this offer" />
+        	
+        	<h:commandButton styleClass="btn btn-primary"  action="#{offerBean.doRefuseOfferResponse()}" value="Refuse this offer" />
+	  </h:panelGrid>
+	  
+      </h:form>
+      
+      <h:panelGrid rendered="#{offerBean.displayProviderSpecificationForm}">
+      <h:outputText value="&#160;" /><h:outputText value="&#160;" />
+      <object type="application/pdf" data="#{offerBean.selectedofferResponse.specifications}" height="500px" width="500px">    
+        </object>
+      </h:panelGrid>
+      
+      </ui:define>
+      
+	</ui:composition>

@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="template.xhtml" 
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+	<h1>List of Items</h1>
+		<h:form>
+		<h:commandButton action="#{stockBean.doAddItemPage()}" value="Add item">											
+					</h:commandButton><br/>
+		<p:dataTable id="tbl" border="1" value="#{stockBean.items}" var="i" widgetVar="itemsTable"
+		 				paginator="true" rows="10" style="margin-bottom:20px">
+ 
+        <f:facet name="{Exporters}">
+            
+ 
+            <h:commandButton>
+                <img src="./resources/img/pdf.png"  width="24"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="item"/>
+            </h:commandButton>
+ 
+           
+        </f:facet>
+		
+			
+				<p:column  filterBy="#{i.id}" headerText="Id" footerText="" filterMatchMode="contains" >				
+					<h:outputText value="#{i.id}" />
+				</p:column>
+				
+				<p:column filterBy="#{i.name}" headerText="name" footerText="" filterMatchMode="contains">
+					
+					<h:outputText value="#{i.name}" />
+				</p:column>
+				<p:column filterBy="#{i.quantity}" headerText="quantity" footerText="" filterMatchMode="contains">
+					
+					<h:outputText value="#{i.quantity}" />
+				</p:column>
+				
+				<p:column filterBy="#{i.category.name}" headerText="category" footerText="" filterMatchMode="in">
+					
+					<f:facet name="filter">
+                		<p:selectCheckboxMenu label="Category" onchange="PF('itemsTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                   
+							<f:selectItems value="#{stockBean.categories}" var="cat"
+							itemLabel="#{cat.name}" itemValue="#{cat.name}" />	
+                		</p:selectCheckboxMenu>
+            		</f:facet>
+            <h:outputText value="#{i.category.name}" />
+				</p:column>
+				
+				<p:column id="column5" exportable="false">
+					<f:facet name="header">
+						<h:outputText value="action"></h:outputText>
+					</f:facet>
+					<h:commandButton  action="#{stockBean.doUpdate()}" value="Update ">					
+						<f:setPropertyActionListener value="#{i}"
+							target="#{stockBean.itemSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+					
+					<h:commandButton  action="#{stockBean.doDeleteItem()}" value="Delete" >
+						<f:setPropertyActionListener value="#{i}"
+							target="#{stockBean.itemSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
+
+    
+ <br/>
+    <h:commandButton>
+        <img src="./resources/img/pdf.png" width="40" height="40" align="right"/>
+        <p:dataExporter type="pdf" target="tbl" fileName="item" pageOnly="true" />
+    </h:commandButton>
+ 
+    
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>

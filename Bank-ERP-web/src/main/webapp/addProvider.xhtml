@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+	<ui:define name="content">
+
+		<h:form id="addProviderForm">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Name" />
+				<h:inputText styleClass="form-control"
+					value="#{providerBean.provider.name}" />
+
+				<h:outputLabel value="Address" />
+				<h:inputText styleClass="form-control"
+					value="#{providerBean.provider.address}" />
+
+				<h:outputLabel value="E-mail" />
+				<h:inputText value="#{providerBean.provider.email}" />
+
+				<h:outputLabel value="Phone Number" />
+				<h:inputText styleClass="form-control"
+					value="#{providerBean.provider.phone}" />
+
+				<h:commandButton styleClass="btn btn-primary"
+					action="#{providerBean.doAddProvider()}" value="Add" />
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

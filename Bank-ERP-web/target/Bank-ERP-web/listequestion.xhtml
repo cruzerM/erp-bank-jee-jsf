@@ -1,0 +1,38 @@
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<title>Index</title>
+		</h:head>
+		<h:body>
+			<h1>Question List</h1>
+			<h:form>
+
+				<p:dataTable border="1" value="#{surveymb.questionlist}" var="q">
+					<p:column id="Id">
+						<f:facet name="header">
+							<h:outputText value="Id"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{q.id}" />
+					</p:column>
+					<p:column id="column2">
+						<f:facet name="header">
+							<h:outputText value="Question"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{q.question}" />
+					</p:column>
+
+				</p:dataTable>
+				<br />
+				<h:link value="Back To Survey List" outcome="index"></h:link>
+				<br />
+			</h:form>
+		</h:body>
+	</ui:define>
+	</ui:composition>

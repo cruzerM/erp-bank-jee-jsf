@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Bank-ERP-ear">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="Bank-ERP-web.war" deploy-path="/" handle="module:/resource/Bank-ERP-web/Bank-ERP-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Bank-ERP-ejb.jar" deploy-path="/" handle="module:/resource/Bank-ERP-ejb/Bank-ERP-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="junit.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/junit/junit/4.10/junit-4.10.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hamcrest-core.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sesame-rio-api.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/openrdf/sesame/sesame-rio-api/2.7.2/sesame-rio-api-2.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sesame-model.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/openrdf/sesame/sesame-model/2.7.2/sesame-model-2.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sesame-util.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/openrdf/sesame/sesame-util/2.7.2/sesame-util-2.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

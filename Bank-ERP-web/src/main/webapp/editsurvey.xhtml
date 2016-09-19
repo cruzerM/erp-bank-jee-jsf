@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<title>edit</title>
+		</h:head>
+		<h:body>
+			<h1>Edit survey</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="theme" />
+					<h:inputText value="#{surveymb.c.theme}" />
+
+					<h:outputText value="Description" />
+					<h:inputTextarea value="#{surveymb.c.description}" />
+
+				</h:panelGrid>
+				<h:commandButton action="#{surveymb.doUpdateSurvey()}" value="edit" />
+				<br />
+				<h:link value="Back To Survey List" outcome="index"></h:link>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

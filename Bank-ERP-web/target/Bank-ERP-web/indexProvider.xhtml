@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:commandButton action="#{providerBean.dislayAddPage()}"
+				value="New provider" class="btn btn-default" />
+			<p:dataTable id="tbl" value="#{providerBean.providers}" var="prov"
+				class="table table-hover" widgetVar="providersTable">
+				<f:facet name="{Exporters}">
+
+
+					<h:commandButton>
+						<img src="./resources/img/pdf.png" width="24" />
+						<p:dataExporter type="pdf" target="tbl" fileName="providers" />
+					</h:commandButton>
+
+
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{prov.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Address" />
+					</f:facet>
+					<h:outputText value="#{prov.address}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="E-mail" />
+					</f:facet>
+					<h:outputText value="#{prov.email}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Phone" />
+					</f:facet>
+					<h:outputText value="#{prov.phone}" />
+				</p:column>
+				<p:column exportable="false">
+					<f:facet name="header">
+						<h:outputText value="#"></h:outputText>
+					</f:facet>
+					<h:commandButton action="#{providerBean.dislayUpdatePage()}"
+						value="Update" class="btn btn-default">
+						<f:setPropertyActionListener value="#{prov}"
+							target="#{providerBean.providerSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton action="#{providerBean.doDeleteProvider()}"
+						value="Delete" class="btn btn-default">
+						<f:setPropertyActionListener value="#{prov}"
+							target="#{providerBean.providerSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
+			<h:commandButton>
+				<img src="./resources/img/pdf.png" width="40" height="40"
+					align="right" />
+				<p:dataExporter type="pdf" target="tbl" fileName="providers"
+					pageOnly="true" />
+			</h:commandButton>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

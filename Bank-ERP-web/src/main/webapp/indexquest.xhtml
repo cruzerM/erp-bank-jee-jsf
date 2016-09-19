@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:f="http://xmlns.jcp.org/jsf/core"
+	   xmlns:h="http://xmlns.jcp.org/jsf/html"
+	   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	   xmlns:jsf="http://xmlns.jcp.org/jsf"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	   xmlns:p="http://primefaces.org/ui"
+	   template="template.xhtml">
+	<ui:define name="content">   
+<h:head>
+	<title>Index</title>
+</h:head>
+<h:body> 
+<h1>Question List</h1>
+	<h:form>
+	 <p:growl id="growl" life="2000" />
+		<h:commandButton value="Add New Question"  action="#{QuestionMB.redrictionAjout()}"/>
+		
+			<p:dataTable border="1" value="#{QuestionMB.questionlist}" var="q">
+				<p:column id="Id">
+					<f:facet name="header">
+						<h:outputText value="Id"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{q.id}" />
+				</p:column>
+				<p:column id="column2">
+					<f:facet name="header">
+						<h:outputText value="Question"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{q.question}" />
+				</p:column>
+				<p:column id="column3">
+					<f:facet name="header">
+						<h:outputText value="Survey"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{q.survey.id}" />
+				</p:column>
+
+				<p:column id="column4">
+					   <f:facet name="header">
+						<h:outputText value="Operation"></h:outputText>
+						</f:facet>
+						<h:commandButton action="#{QuestionMB.doDeleteQuestion(q)}"  id="nonAjax" ajax="false" actionListener="#{buttonView.buttonAction}">
+					    <h:outputText value="Delete" />
+					   </h:commandButton>
+							   	
+					   	<h:commandButton action="#{QuestionMB.doUpdateQuestion(q)}" value="Update" />|
+					    <h:commandButton action="#{QuestionMB.doFindProposition(q)}" value="See All Proposition" />
+				</p:column>
+				
+			</p:dataTable>
+
+		
+		</h:form>
+</h:body>
+</ui:define>
+</ui:composition>

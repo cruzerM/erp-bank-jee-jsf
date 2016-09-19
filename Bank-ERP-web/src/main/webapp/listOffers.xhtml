@@ -1,0 +1,169 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="template.xhtml">
+      
+      
+      <ui:define name="content">
+      
+      <h:form enctype="multipart/form-data">
+      <p:dataTable  value="#{offerBean.offers}" var="u">
+      			<h:column >
+						<f:facet name="header">
+						<h:outputText value="Offer N°"></h:outputText>
+						</f:facet>
+					<h:outputText value="#{u.id}" />
+				</h:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Offer name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Description"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.description}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Items"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.convertedItems}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Begin date"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.beginDate}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="End date"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.endDate}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Offer amount"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.amount}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Offer state"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{u.state==true?'Open':'Closed'}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Actions"></h:outputText>
+					</f:facet>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.dislayUpdateDeleteForm()}" value="Update/Delete">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{offerBean.selectedOffer}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.displayAddResponseForm()}" value="Add Response">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{offerBean.selectedOffer}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.goToOfferResponses()}" value="Show Responses">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{offerBean.selectedOffer}"></f:setPropertyActionListener>
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-primary" action="#{offerBean.displayOffreSpecificationForm()}" value="Show Specification">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{offerBean.selectedOffer}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</p:column>
+      </p:dataTable>
+      
+      
+      
+      
+      <h:panelGrid rendered="#{offerBean.displayUpdateDeleteForm}">
+      
+      			<h:panelGrid>
+      			<h:outputText value="&#160;" />
+				<h:outputLabel value="Offer name" />
+				<h:inputText styleClass="form-control" value="#{offerBean.selectedOffer.name}" />
+				<h:outputText value="&#160;" />
+				</h:panelGrid>
+				
+				<h:panelGrid>
+				<h:outputLabel value="Offer description" />
+				<h:inputTextarea styleClass="form-control" value="#{offerBean.selectedOffer.description}" />
+				<h:outputText value="&#160;" />
+				</h:panelGrid>
+				
+				<h:panelGrid>
+        		<p:outputLabel for="button" value="Offer begin date" />
+        		<p:calendar id="button" value="#{offerBean.selectedOffer.beginDate}" showOn="button" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+        		<p:outputLabel for="button" value="Offer end date" />
+        		<p:calendar id="button1" value="#{offerBean.selectedOffer.endDate}" showOn="button" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+        		<h:outputLabel for="prefix" value="Amount" />
+        		<p:spinner id="prefix" value="#{offerBean.selectedOffer.amount}"  min="0" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+        		<h:outputLabel value="Offer specification" />
+        		<p:fileUpload value="#{offerBean.file}" mode="simple" update="growl"/>
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+				<h:commandButton styleClass="btn btn-primary" action="#{offerBean.doUpdateOffer()}" value="Update offer" />
+				<h:commandButton styleClass="btn btn-primary" action="#{offerBean.doDeleteOffer()}" value="Delete offer" />
+				</h:panelGrid>
+	  </h:panelGrid>
+	  
+	  <h:panelGrid rendered="#{offerBean.displayAddResponseForm}">
+	  
+	  		<h:panelGrid>
+      		<h:outputText value="&#160;" />
+	  		<p:outputLabel for="provider" value="Provider Name " />
+            <h:selectOneMenu styleClass="form-control" id="provider" value="#{offerBean.providerName}" style="width:150px">
+                <f:selectItems value="#{offerBean.providerNames}" />
+            </h:selectOneMenu>
+            <h:outputText value="&#160;" />
+            </h:panelGrid>
+            
+            <h:panelGrid>
+            <h:outputLabel for="prefix1" value="Amount" />
+        	<p:spinner id="prefix1" value="#{offerBean.offerResponse.amount}"  min="0" />
+        	<h:outputText value="&#160;" />
+        	</h:panelGrid>
+        	
+        	<h:panelGrid>
+        	<h:outputLabel value="Response specification" />
+        	<p:fileUpload value="#{offerBean.file}" mode="simple" update="growl"/>
+        	<h:outputText value="&#160;" />
+        	</h:panelGrid>
+        	
+        	<h:commandButton styleClass="btn btn-primary" action="#{offerBean.doAddOfferResponse()}" value="Add response" />
+	  </h:panelGrid>
+      </h:form>
+      
+      <h:panelGrid rendered="#{offerBean.displayOffreSpecificationForm}">
+      <object type="application/pdf" data="#{offerBean.selectedOffer.specifications}" height="500px" width="500px">    
+        </object>
+      </h:panelGrid>
+      
+       	<h:form>
+      	<p:growl  id="growl" showDetail="true"/>
+      	</h:form>
+      
+      </ui:define>
+</ui:composition>

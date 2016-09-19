@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:f="http://xmlns.jcp.org/jsf/core"
+	   xmlns:h="http://xmlns.jcp.org/jsf/html"
+	   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	   xmlns:jsf="http://xmlns.jcp.org/jsf"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	   xmlns:p="http://primefaces.org/ui"
+	   template="template.xhtml">
+	   
+	   <ui:define name="content">
+<h:head>
+	<title>edit</title>
+	
+</h:head>
+<h:body>
+
+		<h1>Edit Question</h1>
+		
+ 
+               <h:form>
+              
+             <h:panelGrid columns="2">
+				<h:outputText value="Question" />
+				<h:inputText value="#{QuestionMB.c.question}" />
+				
+				<h:outputText value="Survey" />
+			  
+	       <h:selectOneMenu  value="#{QuestionMB.survey.id}">
+				<f:selectItems value="#{QuestionMB.myModelValues}" var="survey" itemLabel="#{QuestionMB.survey.theme}" itemValue="#{QuestionMB.survey.id}"/>
+			</h:selectOneMenu>
+				
+			</h:panelGrid>
+				<h:commandButton action="#{QuestionMB.doUpdateQuestion()}" value="Submit" />
+					<br/>
+					<h:link value="Back To Question List" outcome="index"></h:link>
+         </h:form>
+		
+</h:body>
+</ui:define>
+</ui:composition>

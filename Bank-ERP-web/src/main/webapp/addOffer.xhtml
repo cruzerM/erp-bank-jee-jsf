@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="template.xhtml"
+      >
+      <ui:define name="content">
+      <h:form enctype="multipart/form-data">
+      <h:panelGrid>
+      
+      			<h:panelGrid>
+     			<h:outputLabel value="Offer name" />
+				<h:inputText styleClass="form-control" value="#{offerBean.offer.name}" />
+				<h:outputText value="&#160;" />
+				</h:panelGrid>
+				
+				<h:panelGrid>
+				<h:outputLabel value="Offer description" />
+				<h:inputTextarea styleClass="form-control" value="#{offerBean.offer.description}" />
+				<h:outputText value="&#160;" />
+				</h:panelGrid>
+				
+				<h:panelGrid>
+				<h:outputLabel value="Items  (#{offerBean.items.size()})" />
+				<h:selectOneMenu styleClass="form-control" id="provider" value="#{offerBean.product}" style="width:150px">
+                <f:selectItems value="#{offerBean.products}" />
+            	</h:selectOneMenu>
+            	<h:outputText value="&#160;" />
+            	<p:spinner value="#{offerBean.quentity}"  min="0" />
+            	<h:outputText value="&#160;" />
+            	<p:commandButton  styleClass="btn btn-success"
+					action="#{offerBean.fillItemsHashMap()}" value="Add Item"/>
+				<h:outputText value="&#160;" />
+				</h:panelGrid>
+				
+				<h:panelGrid>
+        		<p:outputLabel for="button" value="Offer begin date" />
+        		<p:calendar id="button" value="#{offerBean.offer.beginDate}" showOn="button" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+				
+				<h:panelGrid>
+				<p:outputLabel for="button" value="Offer end date" />
+        		<p:calendar id="button1" value="#{offerBean.offer.endDate}" showOn="button" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+        		<h:outputLabel for="prefix" value="Total amount" />
+        		<p:spinner id="prefix" value="#{offerBean.offer.amount}"  min="0" />
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<h:panelGrid>
+        		<h:outputLabel value="Offer specification" />
+        		<p:fileUpload value="#{offerBean.file}" mode="simple" update="growl"/>
+        		<h:outputText value="&#160;" />
+        		</h:panelGrid>
+        		
+        		<p:commandButton  styleClass="btn btn-primary"
+					action="#{offerBean.doAddOffer()}" value="Add offer" />
+					
+      </h:panelGrid>
+      </h:form>
+      
+      <h:form>
+      <p:growl  id="growl" showDetail="true"/>
+      </h:form>
+      
+     </ui:define> 
+      
+</ui:composition>

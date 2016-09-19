@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="template.xhtml">
+
+	<ui:define name="content">
+		<h1>add item</h1>
+		<h:form>
+			<h:panelGrid columns="1">
+
+					<h:outputText value="Name " />
+			<h:selectOneMenu value="#{stockBean.item.name}">
+				<f:selectItem itemValue="#{null}" itemLabel=" --select one-- " />
+				<f:selectItem itemValue="coffee table" itemLabel="coffee table" />
+   				<f:selectItem itemValue="counter" itemLabel="counter" />
+   				<f:selectItem itemValue="desktop computer" itemLabel="desktop computer" />
+   				<f:selectItem itemValue="fax" itemLabel="fax" />
+   				<f:selectItem itemValue="high chair" itemLabel="high chair" />
+			   	<f:selectItem itemValue="normal chair" itemLabel="normal chair" />	
+			   	<f:selectItem itemValue="normal table" itemLabel="normal table" />
+			   	<f:selectItem itemValue="paper" itemLabel="paper" />
+			   	<f:selectItem itemValue="pc" itemLabel="pc" />
+			   	<f:selectItem itemValue="pen" itemLabel="pen" />	
+			   	<f:selectItem itemValue="phone" itemLabel="phone" />
+			   	<f:selectItem itemValue="printer" itemLabel="printer" />	
+			   	
+   			
+			</h:selectOneMenu>
+			
+				<h:outputText value="Quantity " />
+				<h:inputText value="#{stockBean.item.quantity}" />
+				
+				<h:outputText value="Category " />
+			<h:selectOneMenu value="#{stockBean.categoryId}">
+				<f:selectItem itemValue="0" itemLabel=" --select one-- " />
+				<f:selectItems value="#{stockBean.categories}" var="cat"
+					itemLabel="#{cat.name}" itemValue="#{cat.id}" />					 					
+			</h:selectOneMenu>
+		
+			
+				<h:commandButton action="#{stockBean.doAddItem()}" value="add" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

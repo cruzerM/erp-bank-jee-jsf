@@ -1,0 +1,46 @@
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrought"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="template.xhtml">
+
+	<ui:define name="content">
+
+		<body>
+			<h1>leave list</h1>
+			<h:form>
+				<h:dataTable border="1" value="#{leaveBean.dataModel}" var="a">
+					<h:column id="column1">
+						<f:facet name="header">
+							<h:outputText value="Employee"></h:outputText>
+						</f:facet>
+			#{a.employee}
+			</h:column>
+					<h:column id="column2">
+						<f:facet name="header">
+							<h:outputText value="start date"></h:outputText>
+						</f:facet>
+			#{a.startDate}
+			</h:column>
+					<h:column id="column3">
+						<f:facet name="header">
+							<h:outputText value="end date"></h:outputText>
+						</f:facet>
+			#{a.endDate}
+			
+		</h:column>
+					<h:column id="column4">
+						<f:facet name="header">
+							<h:outputText value="Action"></h:outputText>
+						</f:facet>
+						<h:commandButton value="Delete" />
+						<h:commandButton value="Edit" ajax="false">
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+				
+			</h:form>
+		</body>
+	</ui:define>
+</ui:composition>

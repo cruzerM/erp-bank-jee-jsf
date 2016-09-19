@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="template.xhtml">
+
+	<ui:define name="content">
+		<h1>update Category</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+<h:outputText value="name" />
+				<h:inputText value="#{stockBean.categorySelected.name}" />
+				
+				<h:commandButton  action="#{stockBean.doUpdateCategory()}" value="Save" />
+				<h:commandButton action="#{stockBean.doDeleteCategory()}" value="Delete" />
+			
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
